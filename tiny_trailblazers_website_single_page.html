@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tiny Trailblazers is a lead social enterprise improving literacy rates in the North East of England — raising money for Seven Stories through book bundles and community events." />
+  <title>Tiny Trailblazers | Little steps. Big readers.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff4fb8;
+      --pink-2:#ff77c9;
+      --yellow:#ffd94a;
+      --yellow-2:#fff1b0;
+      --ink:#1f1f2b;
+      --muted:#5a5a70;
+      --card:#ffffff;
+      --bg:#fff8fd;
+      --ring: rgba(255,79,184,.25);
+      --shadow: 0 14px 40px rgba(31,31,43,.12);
+      --radius: 22px;
+      --radius-sm: 16px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(255,217,74,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(255,79,184,.28), transparent 55%),
+        linear-gradient(180deg, var(--bg), #fff);
+    }
+
+    a{color:inherit}
+
+    .wrap{width:min(1120px, 92vw); margin:0 auto;}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(1.2) blur(10px);
+      background:rgba(255,255,255,.72);
+      border-bottom:1px solid rgba(0,0,0,.05);
+    }
+
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+    .brand h1{margin:0; font-family:"Baloo 2", cursive; letter-spacing:.2px; font-size:20px; line-height:1;}
+    .brand small{display:block; color:var(--muted); font-weight:500; margin-top:2px; font-size:12px}
+
+    .navlinks{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
+    .navlinks a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      font-size:13px;
+      padding:10px 10px;
+      border-radius:999px;
+    }
+    .navlinks a:hover{background:rgba(255,217,74,.35); color:var(--ink)}
+
+    .cta{display:flex; gap:10px; align-items:center;}
+
+    .btn{
+      appearance:none; border:0; cursor:pointer;
+      padding:11px 14px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.2px;
+      transition:transform .08s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: 0 10px 22px rgba(31,31,43,.12);
+      display:inline-flex; align-items:center; gap:8px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:linear-gradient(135deg, var(--pink), var(--pink-2)); color:#fff;}
+    .btn.primary:hover{box-shadow: 0 16px 28px rgba(255,79,184,.22)}
+    .btn.secondary{background:linear-gradient(135deg, var(--yellow), var(--yellow-2)); color:var(--ink);}
+    .btn.secondary:hover{box-shadow: 0 16px 28px rgba(255,217,74,.25)}
+
+    /* Hero */
+    .hero{
+      padding:54px 0 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,217,74,.38);
+      border:1px solid rgba(0,0,0,.06);
+      font-weight:700;
+      font-size:13px;
+      width:fit-content;
+    }
+
+    .kicker b{color:var(--pink)}
+
+    .hero h2{
+      margin:14px 0 10px;
+      font-family:"Baloo 2", cursive;
+      font-size: clamp(34px, 4vw, 54px);
+      line-height:1.02;
+      letter-spacing:.2px;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width:54ch;
+    }
+
+    .hero .actions{display:flex; gap:10px; align-items:center; margin-top:18px; flex-wrap:wrap;}
+
+    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+    .pill{
+      border:1px solid rgba(0,0,0,.07);
+      background:rgba(255,255,255,.7);
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      color:var(--ink);
+    }
+    .pill span{color:var(--muted); font-weight:600}
+
+    .heroCard{
+      background:linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.72));
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .heroCard::before{
+      content:"";
+      position:absolute;
+      inset:-80px -120px auto auto;
+      width:260px; height:260px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,79,184,.35), transparent 62%),
+                  radial-gradient(circle at 70% 70%, rgba(255,217,74,.40), transparent 62%);
+      border-radius:999px;
+      transform:rotate(18deg);
+    }
+
+    .cardTitle{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px;}
+    .cardTitle h3{margin:0; font-family:"Baloo 2", cursive; font-size:22px;}
+
+    .miniGrid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    .mini{
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:18px;
+      padding:12px;
+    }
+    .mini b{display:block; font-size:20px; font-family:"Baloo 2", cursive;}
+    .mini span{color:var(--muted); font-size:12px; font-weight:600; line-height:1.4; display:block; margin-top:3px}
+
+    /* Sections */
+    section{padding:56px 0;}
+    .sectionHead{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:18px; flex-wrap:wrap;}
+    .sectionHead h3{margin:0; font-family:"Baloo 2", cursive; font-size:30px;}
+    .sectionHead p{margin:0; color:var(--muted); max-width:70ch}
+
+    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;}
+    .grid2{display:grid; grid-template-columns:repeat(2, 1fr); gap:14px;}
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 12px 28px rgba(31,31,43,.08);
+    }
+
+    .card h4{margin:0 0 8px; font-size:16px;}
+    .card p{margin:0; color:var(--muted); line-height:1.6; font-size:14px;}
+
+    .stat{display:flex; align-items:flex-start; gap:12px;}
+    .stat .num{
+      flex:0 0 auto;
+      width:64px; height:64px;
+      border-radius:18px;
+      display:grid; place-items:center;
+      background:rgba(255,79,184,.12);
+      border:1px solid rgba(255,79,184,.20);
+      font-family:"Baloo 2", cursive;
+      font-size:22px;
+    }
+
+    .stat:nth-child(2) .num{background:rgba(255,217,74,.18); border-color:rgba(255,217,74,.35)}
+    .stat:nth-child(3) .num{background:rgba(88,194,255,.14); border-color:rgba(88,194,255,.25)}
+
+    .note{margin-top:12px; color:var(--muted); font-size:12px;}
+
+    /* Bundle */
+    .bundle{display:grid; grid-template-columns: 1.1fr .9fr; gap:14px;}
+
+    .priceTag{
+      display:flex; align-items:center; justify-content:space-between;
+      background:linear-gradient(135deg, rgba(255,217,74,.34), rgba(255,79,184,.12));
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:18px;
+      padding:14px;
+      margin-top:10px;
+      gap:10px;
+    }
+    .priceTag b{font-size:18px; font-family:"Baloo 2", cursive;}
+    .priceTag span{color:var(--muted); font-size:12px; font-weight:600}
+
+    ul.clean{margin:10px 0 0; padding:0 0 0 18px; color:var(--muted); line-height:1.7; font-size:14px}
+
+    /* Event highlight */
+    .event{display:flex; gap:14px; align-items:stretch; flex-wrap:wrap;}
+    .event .badge{
+      background:linear-gradient(135deg, var(--yellow), var(--yellow-2));
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:18px;
+      padding:12px 14px;
+      min-width:240px;
+      box-shadow: 0 12px 24px rgba(31,31,43,.08);
+    }
+    .event .badge b{display:block; font-family:"Baloo 2", cursive; font-size:20px;}
+    .event .badge span{display:block; color:var(--muted); font-weight:700; font-size:12px; margin-top:4px}
+
+    /* Contact */
+    form{display:grid; gap:10px;}
+    label{font-size:12px; font-weight:700; color:var(--muted)}
+    input, textarea{
+      width:100%;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.10);
+      padding:12px 12px;
+      font:inherit;
+      outline:none;
+      background:#fff;
+    }
+    input:focus, textarea:focus{box-shadow:0 0 0 6px var(--ring); border-color:rgba(255,79,184,.35)}
+
+    .toast{
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px dashed rgba(0,0,0,.18);
+      background:rgba(255,217,74,.22);
+      color:var(--ink);
+      font-size:13px;
+      display:none;
+    }
+
+    /* Footer */
+    footer{
+      padding:28px 0 38px;
+      border-top:1px solid rgba(0,0,0,.06);
+      color:var(--muted);
+      font-size:12px;
+    }
+    footer a{color:var(--muted)}
+
+    /* Modal */
+    .modalBackdrop{
+      position:fixed; inset:0; background:rgba(0,0,0,.44);
+      display:none; align-items:center; justify-content:center;
+      padding:18px;
+      z-index:100;
+    }
+    .modal{
+      width:min(720px, 96vw);
+      border-radius:var(--radius);
+      background:#fff;
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow: 0 30px 80px rgba(0,0,0,.30);
+      overflow:hidden;
+    }
+    .modalHead{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 16px;
+      background:linear-gradient(135deg, rgba(255,79,184,.12), rgba(255,217,74,.22));
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .modalHead b{font-family:"Baloo 2", cursive; font-size:18px}
+    .iconBtn{
+      border:0; background:rgba(255,255,255,.9);
+      border:1px solid rgba(0,0,0,.10);
+      width:38px; height:38px; border-radius:999px;
+      cursor:pointer; font-weight:900;
+    }
+    .modalBody{padding:16px;}
+    .modalBody p{margin:0 0 10px; color:var(--muted); line-height:1.6}
+
+    .twoCol{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr; padding-top:34px}
+      .bundle{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
+      .miniGrid{grid-template-columns:1fr 1fr}
+      .cta{display:none}
+    }
+    @media (max-width: 520px){
+      .navlinks{display:none}
+      .miniGrid{grid-template-columns:1fr}
+      .twoCol{grid-template-columns:1fr}
+    }
+
+    /* Accessible skip link */
+    .skip{position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;}
+    .skip:focus{
+      position:fixed; left:12px; top:12px; width:auto; height:auto;
+      padding:10px 12px; background:#fff; border-radius:12px;
+      box-shadow:var(--shadow);
+      z-index:1000;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Tiny Trailblazers home">
+        <!-- Bear logo image -->
+        <!-- Simple inline logo (bear reading with sleep mask) -->
+        <svg width="44" height="44" viewBox="0 0 64 64" role="img" aria-label="Tiny Trailblazers logo" style="flex:0 0 auto">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff4fb8"/>
+              <stop offset="1" stop-color="#ffd94a"/>
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="28" r="18" fill="#f7d6b8" stroke="#1f1f2b" stroke-width="2"/>
+          <circle cx="18" cy="18" r="7" fill="#f7d6b8" stroke="#1f1f2b" stroke-width="2"/>
+          <circle cx="46" cy="18" r="7" fill="#f7d6b8" stroke="#1f1f2b" stroke-width="2"/>
+          <path d="M18 18c3-4 9-6 14-6s11 2 14 6" fill="none" stroke="#1f1f2b" stroke-width="2" stroke-linecap="round"/>
+          <path d="M20 22c4-6 12-8 12-8s8 2 12 8" fill="url(#g1)" opacity=".9" stroke="#1f1f2b" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="26" cy="28" r="2.2" fill="#1f1f2b"/>
+          <circle cx="38" cy="28" r="2.2" fill="#1f1f2b"/>
+          <path d="M30 34c2 2 4 2 6 0" fill="none" stroke="#1f1f2b" stroke-width="2" stroke-linecap="round"/>
+          <path d="M16 40c7-4 12-5 16-4v18c-5-1-10 0-16 4z" fill="#fff" stroke="#1f1f2b" stroke-width="2"/>
+          <path d="M48 40c-7-4-12-5-16-4v18c5-1 10 0 16 4z" fill="#fff" stroke="#1f1f2b" stroke-width="2"/>
+          <path d="M32 36v18" stroke="#1f1f2b" stroke-width="2"/>
+          <path d="M20 46h8M20 50h8" stroke="#ff4fb8" stroke-width="2" stroke-linecap="round"/>
+          <path d="M36 46h8M36 50h8" stroke="#ffd94a" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h1>Tiny Trailblazers</h1>
+          <small>Improving literacy in the North East</small>
+        </div>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#mission">Mission</a>
+        <a href="#team">Team</a>
+        <a href="#the-problem">The problem</a>
+        <a href="#bundles">Book bundles</a>
+        <a href="#events">Events</a>
+        <a href="#support">Support</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn secondary" href="#bundles">Shop bundles</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap hero" id="top">
+      <div>
+        <div class="kicker">🐾 <span>Lead social enterprise for <b>little readers</b> in the North East</span></div>
+        <h2>Little steps. <br/>Big readers.</h2>
+        <p>
+          Tiny Trailblazers is all about boosting literacy rates across the North East of England — raising money for <b>Seven Stories</b>
+          so we can host joyful, book-filled events that help children fall in love with reading.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#bundles">Buy a book bundle</a>
+          <a class="btn secondary" href="#events">See our school visit</a>
+        </div>
+        <div class="pillrow" aria-label="Highlights">
+          <div class="pill">📚 Donated books <span>re-loved</span></div>
+          <div class="pill">🧵 Handmade scrunchies <span>& bookmarks</span></div>
+          <div class="pill">🍭 A sweet surprise <span>lolly included</span></div>
+        </div>
+      </div>
+
+      <aside class="heroCard" aria-label="At a glance">
+        <div class="cardTitle">
+          <h3>At a glance</h3>
+          <span class="pill" style="background:rgba(255,79,184,.12); border-color:rgba(255,79,184,.25)">North East • UK</span>
+        </div>
+        <div class="miniGrid">
+          <div class="mini">
+            <b>£ →</b>
+            <span>All proceeds support our literacy events and fundraising for Seven Stories.</span>
+          </div>
+          <div class="mini">
+            <b>📅 4 Mar</b>
+            <span>Newcastle High School for Girls – Junior School visit during World Book Day week (2026).</span>
+          </div>
+          <div class="mini">
+            <b>Bundles</b>
+            <span>Donated books + handmade scrunchies + bookmarks + lolly.</span>
+          </div>
+          <div class="mini">
+            <b>Stories</b>
+            <span>We champion reading for pleasure — because it changes lives.</span>
+          </div>
+        </div>
+        <p class="note">Tip: You can customise this website with your bundle price, photos, and a real checkout link.</p>
+      </aside>
+    </div>
+
+    <section id="mission">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h3>Our mission</h3>
+          <p>
+            We’re building a brighter reading culture across the North East — one small trailblazing moment at a time.
+          </p>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h4>Make reading feel magical</h4>
+            <p>Pop-up story moments, fun book activities, and bundles that make kids excited to open a book at home.</p>
+          </div>
+          <div class="card">
+            <h4>Raise funds for Seven Stories</h4>
+            <p>We fundraise so we can host events in partnership with Seven Stories — the National Centre for Children’s Books in Newcastle.</p>
+          </div>
+          <div class="card">
+            <h4>Keep it accessible</h4>
+            <p>Donated books and low-cost fundraising helps families access stories without barriers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section id="the-problem">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h3>What’s the problem in the North East?</h3>
+          <p>
+            The North East has pockets of high deprivation and children can miss out on books, libraries, and early literacy support.
+            Here are a few headline figures commonly used by literacy charities and researchers.
+          </p>
+        </div>
+
+        <div class="grid3" style="align-items:stretch">
+          <div class="card stat">
+            <div class="num">1/5</div>
+            <div>
+              <h4>Don’t own a book at home</h4>
+              <p>About one in five children aged 5–8 in the North East reportedly don’t have a book of their own at home.</p>
+            </div>
+          </div>
+          <div class="card stat">
+            <div class="num">27%</div>
+            <div>
+              <h4>Struggling by age 5</h4>
+              <p>Around 27% of children in the North East are reported to be struggling with literacy levels by the age of five.</p>
+            </div>
+          </div>
+          <div class="card stat">
+            <div class="num">17%</div>
+            <div>
+              <h4>Adults with very poor literacy</h4>
+              <p>Nearly one in five adults in the North East are reported to have very poor literacy skills.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px">
+          <div class="card">
+            <h4>Why it matters</h4>
+            <p>
+              Reading isn’t just about school — it affects confidence, wellbeing, job options, and everyday life.
+              When adults struggle with literacy, it can also make it harder to support children’s learning at home.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Our focus</h4>
+            <p>
+              We keep it simple: more books in homes, more moments of reading joy, and more local events that make stories feel part of life.
+              Every bundle and donation helps us do more.
+            </p>
+          </div>
+        </div>
+
+        <p class="note">Sources used for these headline figures are listed in the website footer.</p>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h3>Meet the team</h3>
+          <p>
+            Tiny Trailblazers is powered by a dedicated group of people who care deeply about children, books, and creating joyful reading experiences.
+          </p>
+        </div>
+
+        <div class="grid3">
+          <div class="card" style="text-align:center">
+            <div style="width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,var(--pink),var(--yellow));display:flex;align-items:center;justify-content:center;font-size:32px">⭐</div>
+            <h4>Leadership</h4>
+            <p><b>Raz – CEO</b><br/>Provides leadership, direction, and big-picture vision, keeping Tiny Trailblazers true to its mission.</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div style="width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,var(--yellow),var(--pink));display:flex;align-items:center;justify-content:center;font-size:32px">💼</div>
+            <h4>Finance</h4>
+            <p><b>Erika &amp; Jacqueline</b><br/>Manage finances responsibly, ensuring funds are used effectively to maximise impact.</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div style="width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,var(--pink),var(--yellow));display:flex;align-items:center;justify-content:center;font-size:32px">📅</div>
+            <h4>Event Planning</h4>
+            <p><b>Sofiyyah &amp; Brankie</b><br/>Plan and deliver engaging school visits and events that bring stories to life.</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div style="width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,var(--yellow),var(--pink));display:flex;align-items:center;justify-content:center;font-size:32px">📱</div>
+            <h4>Social Media</h4>
+            <p><b>Evie</b><br/>Shares our journey online, helping us connect with families, schools, and supporters.</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div style="width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,var(--pink),var(--yellow));display:flex;align-items:center;justify-content:center;font-size:32px">📣</div>
+            <h4>Marketing</h4>
+            <p><b>Annabel &amp; Charlotte</b><br/>Shape our message and help Tiny Trailblazers grow its reach and visibility.</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div style="width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,var(--yellow),var(--pink));display:flex;align-items:center;justify-content:center;font-size:32px">🎥</div>
+            <h4>Film &amp; Storytelling</h4>
+            <p><b>Miriam</b><br/>Captures our work through film and storytelling, bringing our impact to life.</p>
+          </div>
+
+          <div class="card" style="text-align:center">
+            <div style="width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,var(--pink),var(--yellow));display:flex;align-items:center;justify-content:center;font-size:32px">🎨</div>
+            <h4>Creative Team</h4>
+            <p><b>Ixia, Lexie &amp; Mary</b><br/>Create the handmade elements that make our book bundles feel special and personal.</p>
+          </div>
+        </div>
+
+        <p class="note" style="margin-top:16px">As we grow, we’ll introduce more of the people who help make Tiny Trailblazers possible.</p>
+      </div>
+    </section>
+
+    <section id="bundles">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h3>Book bundles (our fundraiser)</h3>
+          <p>
+            Each bundle is a little box of joy: donated books + handmade extras. You get a treat, and we raise funds to support literacy events.
+          </p>
+        </div>
+
+        <div class="bundle">
+          <div class="card">
+            <h4>What’s inside a Tiny Trailblazers bundle?</h4>
+            <ul class="clean">
+              <li><b>Donated books</b> (cleaned and checked) — age ranges can be selected.</li>
+              <li><b>Handmade scrunchy</b> (pink/yellow vibes!).</li>
+              <li><b>Handmade bookmark</b> (because every hero needs a page saver).</li>
+              <li><b>Lolly</b> (a sweet little thank-you).</li>
+              <li><b>Impact card</b> showing what your purchase supports.</li>
+            </ul>
+
+            <div class="priceTag">
+              <div>
+                <b>Bundle price: <span id="bundlePrice">£12</span></b>
+                <div style="margin-top:2px"><span>Change this to your real price in the settings below.</span></div>
+              </div>
+            </div>
+
+            <p class="note">Want checkout? Add a Stripe / PayPal link and replace this with a payment button when you’re ready.</p>
+          </div>
+
+          <div class="card">
+            <h4>Quick settings</h4>
+            <p>Update these to match what you’re selling (no coding needed — just edit the text).</p>
+            <div class="twoCol" style="margin-top:10px">
+              <div>
+                <label for="priceInput">Bundle price (display)</label>
+                <input id="priceInput" type="text" value="£12" />
+              </div>
+              <div>
+                <label for="ageInput">Age ranges available</label>
+                <input id="ageInput" type="text" value="4–6, 7–9, 10–12" />
+              </div>
+            </div>
+            <div style="margin-top:10px">
+              <label for="collectionInput">Collection / delivery note</label>
+              <input id="collectionInput" type="text" value="Local collection in the North East (or UK postage on request)." />
+            </div>
+
+            <div class="toast" id="settingsToast" role="status" aria-live="polite"></div>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+              <button class="btn secondary" type="button" id="saveSettings">Save settings</button>
+              <button class="btn" type="button" id="resetSettings" style="background:#fff; border:1px solid rgba(0,0,0,.10); box-shadow:none">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="events">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h3>Events</h3>
+          <p>We fundraise so we can run local reading events — especially with primary/junior schools.</p>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="event">
+              <div class="badge">
+                <b>Newcastle High School for Girls – Junior School visit</b>
+                <span>Tuesday 4 March 2026</span>
+              </div>
+              <div style="flex:1; min-width:260px">
+                <h4 style="margin:0 0 8px">World Book Day week</h4>
+                <p style="margin:0; color:var(--muted); line-height:1.6">
+                  We’re heading into Newcastle High School for Girls – Junior School during World Book Day week for stories, book chats, and a confidence-boosting reading session.
+                  (World Book Day itself falls on Thursday 5 March 2026.)
+                </p>
+                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+                  <a class="btn secondary" href="#contact">Invite us to your school</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>What we can run</h4>
+            <ul class="clean">
+              <li>Storytime + Q&A (reading for pleasure)</li>
+              <li>“Pick a Book” mini pop-up library</li>
+              <li>Bookmark / scrunchy craft station</li>
+              <li>Reading buddies + confidence games</li>
+              <li>Donation drop-off points (books + supplies)</li>
+            </ul>
+            <p class="note">Want to add a full events calendar? Ask and I’ll add a simple events page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="support">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h3>How to support Tiny Trailblazers</h3>
+          <p>Three easy ways to help us grow the reading trail.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h4>1) Buy a bundle</h4>
+            <p>Our best fundraiser — you get books + handmade goodies, and we fund literacy events.</p>
+            <div style="margin-top:12px"><a class="btn primary" href="#bundles">Shop bundles</a></div>
+          </div>
+          <div class="card">
+            <h4>2) Donate books</h4>
+            <p>Have children’s books in good condition? Donate them so we can build more bundles or stock pop-up libraries.</p>
+            <div style="margin-top:12px"><a class="btn secondary" href="#contact">Arrange a drop-off</a></div>
+          </div>
+          <div class="card">
+            <h4>3) Sponsor an event</h4>
+            <p>Local businesses can sponsor a school visit, prizes, transport, or craft materials. We’ll proudly thank you on-site and online.</p>
+            <div style="margin-top:12px"><button class="btn primary" type="button" id="openSponsor">Sponsor</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h3>Contact</h3>
+          <p>Want bundles, school visits, partnerships, or to donate books? Send a message and we’ll get back to you.</p>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <form id="contactForm">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div>
+                <label for="topic">Topic</label>
+                <input id="topic" name="topic" placeholder="Bundles / School visit / Donation / Sponsorship" />
+              </div>
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required placeholder="Tell us what you need…"></textarea>
+              </div>
+              <button class="btn primary" type="submit">Send message</button>
+              <div class="toast" id="contactToast" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h4>About Seven Stories</h4>
+            <p>Seven Stories is the National Centre for Children’s Books, based in Newcastle upon Tyne. We’re raising funds to support literacy and reading-for-pleasure events.</p>
+            <div style="margin-top:12px">
+              <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.7">
+                <b>Address:</b> 30 Lime Street, Ouseburn, Newcastle upon Tyne NE1 2PQ<br/>
+                <b>Charity number:</b> 1056812
+              </p>
+            </div>
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn" href="#the-problem" style="background:#fff; border:1px solid rgba(0,0,0,.10); box-shadow:none">Why literacy?</a>
+            </div>
+
+            <p class="note">Replace the address/charity details if you prefer not to display them publicly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap">
+          <div>
+            <b style="color:var(--ink)">Tiny Trailblazers</b><br/>
+            <span>Pink + yellow literacy social enterprise • North East England</span>
+          </div>
+          <div style="max-width:560px">
+            <b style="color:var(--ink)">Sources for headline figures</b><br/>
+            <span>
+              National Literacy Trust (North East FAQ) and World Book Day UK pages.
+              <a href="https://literacytrust.org.uk/communities/north-east/read-north-east-frequently-asked-questions/" target="_blank" rel="noopener">(NLT NE FAQ)</a>
+              • <a href="https://www.worldbookday.com/" target="_blank" rel="noopener">(World Book Day)</a>
+              • <a href="https://sevenstories.org.uk/" target="_blank" rel="noopener">(Seven Stories)</a>
+            </span>
+          </div>
+        </div>
+        <p style="margin:12px 0 0">© <span id="year"></span> Tiny Trailblazers. Made with 🐾 + 📚</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Modals -->
+  <div class="modalBackdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Modal">
+    <div class="modal" role="document">
+      <div class="modalHead">
+        <b id="modalTitle">Modal</b>
+        <button class="iconBtn" type="button" id="closeModal" aria-label="Close">✕</button>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    // Tiny Trailblazers — lightweight interactivity (no online ordering / donate / volunteer buttons)
+
+    const $ = (sel) => document.querySelector(sel);
+
+    // Year
+    const yearEl = $('#year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Settings (bundle price + age ranges + collection note)
+    const defaults = {
+      price: '£12',
+      ages: '4–6, 7–9, 10–12',
+      collection: 'Local collection in the North East (or UK postage on request).'
+    };
+
+    function loadSettings(){
+      const stored = JSON.parse(localStorage.getItem('tt_settings') || 'null');
+      const s = stored || defaults;
+      const priceEl = $('#bundlePrice');
+      if (priceEl) priceEl.textContent = s.price;
+      const pi = $('#priceInput');
+      const ai = $('#ageInput');
+      const ci = $('#collectionInput');
+      if (pi) pi.value = s.price;
+      if (ai) ai.value = s.ages;
+      if (ci) ci.value = s.collection;
+    }
+
+    function toast(el, msg){
+      if(!el) return;
+      el.textContent = msg;
+      el.style.display = 'block';
+      clearTimeout(el._t);
+      el._t = setTimeout(() => el.style.display = 'none', 3200);
+    }
+
+    const saveBtn = $('#saveSettings');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', () => {
+        const s = {
+          price: ($('#priceInput')?.value || '').trim() || defaults.price,
+          ages: ($('#ageInput')?.value || '').trim() || defaults.ages,
+          collection: ($('#collectionInput')?.value || '').trim() || defaults.collection,
+        };
+        localStorage.setItem('tt_settings', JSON.stringify(s));
+        const priceEl = $('#bundlePrice');
+        if (priceEl) priceEl.textContent = s.price;
+        toast($('#settingsToast'), 'Saved! Your bundle details are updated on this device.');
+      });
+    }
+
+    const resetBtn = $('#resetSettings');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        localStorage.removeItem('tt_settings');
+        loadSettings();
+        toast($('#settingsToast'), 'Reset to defaults.');
+      });
+    }
+
+    loadSettings();
+
+    // Modal helpers
+    const backdrop = $('#modalBackdrop');
+    const modalTitle = $('#modalTitle');
+    const modalBody = $('#modalBody');
+
+    function openModal(title, html){
+      if(!backdrop || !modalTitle || !modalBody) return;
+      modalTitle.textContent = title;
+      modalBody.innerHTML = html;
+      backdrop.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      if(!backdrop || !modalBody) return;
+      backdrop.style.display = 'none';
+      modalBody.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    const closeModalBtn = $('#closeModal');
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+
+    if (backdrop) {
+      backdrop.addEventListener('click', (e) => {
+        if(e.target === backdrop) closeModal();
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && backdrop && backdrop.style.display === 'flex') closeModal();
+    });
+
+    // Sponsor modal
+    const sponsorBtn = $('#openSponsor');
+    if (sponsorBtn) {
+      sponsorBtn.addEventListener('click', () => {
+        openModal('Sponsor an event', `
+          <p>Businesses can sponsor a school visit or pop-up reading event.</p>
+          <ul class="clean">
+            <li>£ covers transport and materials</li>
+            <li>££ covers a full event + take-home books</li>
+            <li>In-kind support: printing, snacks, venue space</li>
+          </ul>
+          <p style="margin-top:10px">Use the contact form and include “Sponsorship”.</p>
+        `);
+      });
+    }
+
+    // Contact form (placeholder)
+    const contactForm = $('#contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        toast($('#contactToast'), 'Message captured (demo). Connect this form to email or a CRM when you’re ready.');
+        e.target.reset();
+      });
+    }
+
+    // Self-tests (non-blocking) — helps catch missing IDs early during edits
+    function runSelfTests(){
+      console.assert(!!$('#modalBackdrop'), 'Expected #modalBackdrop to exist');
+      console.assert(!!$('#modalTitle'), 'Expected #modalTitle to exist');
+      console.assert(!!$('#modalBody'), 'Expected #modalBody to exist');
+      console.assert(!!$('#bundlePrice'), 'Expected #bundlePrice to exist');
+      console.assert(!!$('#saveSettings'), 'Expected #saveSettings to exist');
+      console.assert(!!$('#resetSettings'), 'Expected #resetSettings to exist');
+      console.assert(!!$('#contactForm'), 'Expected #contactForm to exist');
+      console.assert(!!$('#openSponsor'), 'Expected #openSponsor to exist');
+    }
+    runSelfTests();
+  </script>
+</body>
+</html>
